@@ -16,9 +16,8 @@ export function SearchInput() {
         <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground" />
       </div>
 
-      <Button variant="outline" size="icon" className="md:hidden">
-        <Search className="text-muted-foreground" />
-      </Button>
+      
+        <Search className="text-muted-foreground md:hidden" />
     </form>
   );
 }
