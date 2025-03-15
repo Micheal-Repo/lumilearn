@@ -8,9 +8,9 @@ import { BookMarkedIcon, BookOpen } from "lucide-react";
 export default function Header() {
   return (
     <header className="sticky w-screen top-0 bg-background/80 backdrop-blur-md border-b border-border z-50 ">
-      <div className="container mx-auto flex items-center justify-between py-4 padding-sp gap-4">
+      <div className="container mx-auto flex items-center justify-between py-4 padding-sp gap-2">
         {/*left*/}
-        <div className="flex items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           <Logo />
           <SearchInput />
         </div>
