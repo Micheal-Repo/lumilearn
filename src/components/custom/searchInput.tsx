@@ -7,7 +7,7 @@ import { Search } from "lucide-react";
 export function SearchInput() {
   return (
     <form>
-      <div className="relative">
+      <div className="relative max-md:hidden">
         <Input
           type="text"
           placeholder="Search courses..."
@@ -15,6 +15,10 @@ export function SearchInput() {
         />
         <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground" />
       </div>
+
+      <Button variant="outline" size="icon" className="md:hidden">
+        <Search className="text-muted-foreground" />
+      </Button>
     </form>
   );
 }

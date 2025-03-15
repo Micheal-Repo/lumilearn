@@ -6,7 +6,7 @@ export default async function Home(){
   console.log("projects",projects)
   
   return (
-      <div className="w-screen min-h-screen flex justify-center items-center bg-background text-black font-bold text-[2rem] flex-col">
+      <div className="w-screen min-h-screen flex justify-center items-center bg-background  font-bold text-[2rem] flex-col">
         {projects.map((item,i)=>(
           <h1 key={i}>{i+1}{" "}{item.name}</h1>
         ))}
