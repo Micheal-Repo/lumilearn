@@ -8,6 +8,7 @@ import { ThemeProvider } from "./custom/theme-provider";
 import { ModeToggle } from "./custom/mode-toggle";
 import { SearchInput } from "./custom/searchInput";
 import Header from "./custom/header";
+import {ClerkProviderWithTheme} from "./custom/clerkProviderWithTheme";
 
 
 export {
@@ -21,4 +22,5 @@ export {
   ModeToggle,
   SearchInput,
   Header,
+  ClerkProviderWithTheme
 };
