@@ -1,5 +1,5 @@
 //components
-import { Input } from "@/components/ui/input";
+import { Input,Button } from "@/components";
 
 //icon
 import { Search } from "lucide-react";

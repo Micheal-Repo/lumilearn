@@ -1,5 +1,6 @@
 //ui
 import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 
 //custom
 import Logo from "./custom/logo";
@@ -12,6 +13,7 @@ import Header from "./custom/header";
 export {
   //ui
   Button,
+  Input,
 
   //custom
   Logo,
