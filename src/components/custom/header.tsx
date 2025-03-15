@@ -17,9 +17,6 @@ export default function Header() {
 
         {/*right*/}
         <div className="flex items-center sm:gap-4 gap-2">
-          <Button variant="outline" size="icon" className="md:hidden">
-            <BookMarkedIcon />
-          </Button>
 
           <Button
             variant="outline"
