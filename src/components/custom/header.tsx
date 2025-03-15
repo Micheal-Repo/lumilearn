@@ -3,7 +3,7 @@ import { Logo, ModeToggle, SearchInput, Button } from "@/components";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 //icons
-import { BookMarkedIcon, BookOpen } from "lucide-react";
+import { BookMarkedIcon, BookOpen, Search } from "lucide-react";
 
 export default function Header() {
   return (
@@ -17,6 +17,9 @@ export default function Header() {
 
         {/*right*/}
         <div className="flex items-center sm:gap-4 gap-2">
+          <Button variant="outline" size="icon" className="md:hidden">
+            <Search className="text-muted-foreground" />
+          </Button>
 
           <Button
             variant="outline"
@@ -25,13 +28,13 @@ export default function Header() {
             <BookMarkedIcon />
             <p className="">My Courses</p>
           </Button>
-          
+
           <ModeToggle />
 
           <SignedIn>
             <UserButton />
           </SignedIn>
-          
+
           <SignedOut>
             <SignInButton mode="modal">
               <Button variant="outline">Sign In</Button>
