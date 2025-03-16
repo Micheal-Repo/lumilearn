@@ -3,8 +3,8 @@ import { Button } from "@/components";
 
 export default function Hero() {
   return (
-    <div className="w-screen relative pt-10 pb-[2rem]">
-      <div className="absolute inset-0 bg-gradient-to-b from-black/10 dark:from-white/15 to-background" />
+    <div className="w-screen relative pt-10 pb-[4rem]">
+      <div className="absolute inset-0 bg-gradient-to-b from-black/10 dark:from-white/10 to-background" />
 
       <div className="container relative mx-auto padding-sp ">
         

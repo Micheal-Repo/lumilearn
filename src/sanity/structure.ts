@@ -4,7 +4,7 @@ import type { StructureResolver } from "sanity/structure";
 export const structure: StructureResolver = (S) =>
   S.list()
     .title("Admin Dashboard")
-    .items([S.documentTypeListItem("project").title("Projects")]);
+    .items(S.documentTypeListItems());
 
 // export const structure: StructureResolver = (S) =>
 //   S.list()
