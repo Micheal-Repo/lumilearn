@@ -1,4 +1,4 @@
-import { defineType, defineField, defineArrayMember } from "sanity";
+import { defineField, defineType } from "sanity";
 
 export const courseType = defineType({
   name: "course",
@@ -11,13 +11,13 @@ export const courseType = defineType({
       type: "string",
       validation: (rule) => rule.required(),
     }),
-    defineField({
+    {
       name: "price",
       title: "Price (USD)",
       type: "number",
       description: "Price in USD",
-      validation: (rule) => rule.min(0),
-    }),
+      validation: (Rule) => Rule.min(0),
+    },
     defineField({
       name: "slug",
       title: "Slug",
@@ -37,32 +37,25 @@ export const courseType = defineType({
       name: "image",
       title: "Course Image",
       type: "image",
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "category",
       title: "Category",
       type: "reference",
       to: [{ type: "category" }],
+      validation: (rule) => rule.required(),
     }),
-    // defineField({
-    //   name: "modules",
-    //   title: "Modules",
-    //   type: "array",
-    //   of: [defineArrayMember({ type: "reference", to: [{ type: "module" }] })],
-    // }),
-    // defineField({
-    //   name: "instructor",
-    //   title: "Instructor",
-    //   type: "reference",
-    //   to: [{ type: "instructor" }],
-    //   validation: (rule) => rule.required(),
+    defineField({
+      name: "modules",
+      title: "Modules",
+      type: "array",
+      of: [{ type: "reference", to: { type: "module" } }],
+    }),
+    defineField({
+      name: "instructor",
+      title: "Instructor",
+      type: "reference",
+      to: { type: "instructor" },
     }),
   ],
-  preview: {
-    select: {
-      title: "title",
-      media: "image",
-    },
-  },
-})
+});

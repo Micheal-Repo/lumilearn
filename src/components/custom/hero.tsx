@@ -8,7 +8,7 @@ export default function Hero() {
 
       <div className="container relative mx-auto padding-sp ">
         
-        <div className="max-w-xl space-y-6 md:space-y-6 ">
+        <div className="max-w-3xl space-y-6 md:space-y-8">
           <h1 className="font-bold text-5xl md:text-6xl bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
             Expand Your Knowledge with Our Courses
           </h1>
