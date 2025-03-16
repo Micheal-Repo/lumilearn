@@ -9,6 +9,7 @@ import { ModeToggle } from "./custom/mode-toggle";
 import { SearchInput } from "./custom/searchInput";
 import Header from "./custom/header";
 import {ClerkProviderWithTheme} from "./custom/clerkProviderWithTheme";
+import Hero from "./custom/hero"
 
 
 export {
@@ -22,5 +23,6 @@ export {
   ModeToggle,
   SearchInput,
   Header,
-  ClerkProviderWithTheme
+  ClerkProviderWithTheme,
+  Hero
 };
