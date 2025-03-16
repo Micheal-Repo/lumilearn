@@ -3,7 +3,7 @@ import { Button } from "@/components";
 
 export default function Hero() {
   return (
-    <div className="w-screen h-[45vh] relative pt-8 ">
+    <div className="w-screen relative pt-10 ">
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 dark:from-white/15 to-background" />
 
       <div className="container relative mx-auto h-full flex flex-col padding-sp justify-center">
