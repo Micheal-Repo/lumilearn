@@ -1,70 +1,117 @@
-
-import { defineType, defineField, defineArrayMember } from "sanity";
+import {UserIcon} from '@sanity/icons'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const courseType = defineType({
-  name: "course",
-  title: "Course",
-  type: "document",
+  name: 'author',
+  title: 'Author',
+  type: 'document',
+  icon: UserIcon,
   fields: [
     defineField({
-      name: "title",
-      title: "Title",
-      type: "string",
-      validation: (rule) => rule.required(),
+      name: 'name',
+      type: 'string',
     }),
     defineField({
-      name: "price",
-      title: "Price (USD)",
-      type: "number",
-      description: "Price in USD",
-      validation: (rule) => rule.min(0),
-    }),
-    defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
+      name: 'slug',
+      type: 'slug',
       options: {
-        source: "title",
-        maxLength: 96,
+        source: 'name',
       },
-      validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "description",
-      title: "Description",
-      type: "text",
+      name: 'image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
-      name: "title",
-      title: "Title",
-      type: "string",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "image",
-      title: "Course Image",
-      type: "image",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "category",
-      title: "Category",
-      type: "reference",
-      to: [{ type: "category" }],
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "modules",
-      title: "Modules",
-      type: "array",
-      of: [{ type: "reference", to: { type: "module" } }],
-    }),
-    defineField({
-      name: "instructor",
-      title: "Instructor",
-      type: "reference",
-      to: { type: "instructor" },
-      validation: (rule) => rule.required(),
+      name: 'bio',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [{title: 'Normal', value: 'normal'}],
+          lists: [],
+        }),
+      ],
     }),
   ],
-});
+  preview: {
+    select: {
+      title: 'name',
+      media: 'image',
+    },
+  },
+})
+
+
+// import { defineType, defineField, defineArrayMember } from "sanity";
+
+// export const courseType = defineType({
+//   name: "course",
+//   title: "Course",
+//   type: "document",
+//   fields: [
+//     defineField({
+//       name: "title",
+//       title: "Title",
+//       type: "string",
+//       validation: (rule) => rule.required(),
+//     }),
+//     defineField({
+//       name: "price",
+//       title: "Price (USD)",
+//       type: "number",
+//       description: "Price in USD",
+//       validation: (rule) => rule.min(0),
+//     }),
+//     defineField({
+//       name: "slug",
+//       title: "Slug",
+//       type: "slug",
+//       options: {
+//         source: "title",
+//         maxLength: 96,
+//       },
+//       validation: (rule) => rule.required(),
+//     }),
+//     defineField({
+//       name: "description",
+//       title: "Description",
+//       type: "text",
+//     }),
+//     defineField({
+//       name: "title",
+//       title: "Title",
+//       type: "string",
+//       validation: (rule) => rule.required(),
+//     }),
+//     defineField({
+//       name: "image",
+//       title: "Course Image",
+//       type: "image",
+//       validation: (rule) => rule.required(),
+//     }),
+//     defineField({
+//       name: "category",
+//       title: "Category",
+//       type: "reference",
+//       to: [{ type: "category" }],
+//       validation: (rule) => rule.required(),
+//     }),
+//     defineField({
+//       name: "modules",
+//       title: "Modules",
+//       type: "array",
+//       of: [{ type: "reference", to: { type: "module" } }],
+//     }),
+//     defineField({
+//       name: "instructor",
+//       title: "Instructor",
+//       type: "reference",
+//       to: { type: "instructor" },
+//       validation: (rule) => rule.required(),
+//     }),
+//   ],
+// });
