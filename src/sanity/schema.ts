@@ -1,8 +1,7 @@
 import {type SchemaTypeDefinition} from "sanity"
-import {ProjectType} from "./projectType"
 
-
+import {courseType} from "./schemaTypes/courseType"
 
 export const schema:{types:SchemaTypeDefinition[]} = {
-  types :[ProjectType]
+  types :[courseType]
 }

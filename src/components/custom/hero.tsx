@@ -3,12 +3,12 @@ import { Button } from "@/components";
 
 export default function Hero() {
   return (
-    <div className="w-screen relative pt-10 min-h-[45vh]">
+    <div className="w-screen relative pt-10 pb-[2rem]">
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 dark:from-white/15 to-background" />
 
       <div className="container relative mx-auto padding-sp ">
         
-        <div className="max-w-md space-y-4 md:space-y-6 ">
+        <div className="max-w-xl space-y-6 md:space-y-6 ">
           <h1 className="font-bold text-5xl md:text-6xl bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
             Expand Your Knowledge with Our Courses
           </h1>
