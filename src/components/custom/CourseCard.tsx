@@ -30,25 +30,25 @@ interface props {
 export default function CourseCard({ course }: props) {
   return (
     <Link href="/courses/12233" className="cursor-pointer">
-      <Card className="w-full group hover:-translate-y-4 transition-all duration-300 shadow-md overflow-hidden">
+      <Card className="w-full group hover:-translate-y-2 transition-all duration-300 shadow-md overflow-hidden">
         {/*image*/}
         <div className="h-52 relative w-full overflow-hidden">
           <Image
             fill={true}
             alt="course image"
             src="/image.jpeg"
-            className="object-cover object-center group-hover:scale-105 transition-all duration-300"
+            className="object-cover object-center group-hover:scale-110 transition-all duration-300"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 dark:via-black/40  to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-card" />
 
           <div className="absolute inset-0 py-6 px-4 flex justify-between items-end">
-            <div className="rounded-lg bg-white/70 dark:bg-black/70 backdrop-blur-md p-2 border border-border text-secondary-foreground">
+            <div className="rounded-3xl bg-white/40 dark:bg-black/40 backdrop-blur-md p-2 border border-border text-secondary-foreground">
               <p className="text-sm capitalize">
                 {course.category || "Uncategorized"}
               </p>
             </div>
-            <div className="rounded-lg bg-white/70 dark:bg-black/70 backdrop-blur-md p-2 border border-border text-secondary-foreground">
-              <p className="text-sm capitalize">{course.price || 0}</p>
+            <div className="rounded-3xl bg-white/40 dark:bg-black/40 backdrop-blur-md p-2 border border-border text-secondary-foreground">
+              <p className="text-sm capitalize">${course.price || 0}</p>
             </div>
           </div>
         </div>
