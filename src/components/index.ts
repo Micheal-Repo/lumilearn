@@ -10,6 +10,7 @@ import { SearchInput } from "./custom/searchInput";
 import Header from "./custom/header";
 import {ClerkProviderWithTheme} from "./custom/clerkProviderWithTheme";
 import Hero from "./custom/hero"
+import CourseCard from "./custom/CourseCard"
 
 
 export {
@@ -24,5 +25,6 @@ export {
   SearchInput,
   Header,
   ClerkProviderWithTheme,
-  Hero
+  Hero,
+  CourseCard
 };
