@@ -96,7 +96,7 @@ export default function Course() {
       </div>
 
       {/*bottom*/}
-      <div className="mt-14 container mx-auto padding-sp grid lg:grid-cols-3 grid-cols-1 padding-sp">
+      <div className="mt-14 container mx-auto padding-sp grid lg:grid-cols-3 grid-cols-1 padding-sp gap-12">
         {/*module*/}
         <div className="w-full lg:col-span-2 mb-8 border border-border bg-card rounded-lg p-4">
           <h2 className="text-2xl font-bold mb-4">Course Content</h2>
