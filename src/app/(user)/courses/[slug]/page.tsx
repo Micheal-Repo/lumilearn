@@ -47,7 +47,8 @@ export default function Course() {
   return (
     <div className="w-screen pb-14">
       {/*Top*/}
-      <div className="min-h-[50vh] w-full relative pt-[3rem] flex items-end">
+      <div className="min-h-[50vh] w-full relative max-md:pt-[3rem] flex items-end">
+        
         <div className="absolute inset-0">
           <Image
             src="/image.jpeg"
@@ -60,7 +61,7 @@ export default function Course() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black" />
 
         {/*content*/}
-        <div className="relative container mx-auto flex flex-col md:flex-row md:justify-between gap-6 text-white padding-sp pb-8">
+        <div className="relative container mx-auto flex flex-col md:flex-row md:justify-between gap-6 text-white padding-sp pb-8 md:items-end">
           {/*left*/}
           
           <div className="flex flex-col gap-6">
@@ -70,7 +71,7 @@ export default function Course() {
             </div>
 
             <div>
-              <span className="rounded-3xl  p-2 bg-white/10 backdrop-blur-md capitalize text-white/80 text-sm">
+              <span className="rounded-3xl  border border-white/30 p-2 bg-white/10 backdrop-blur-md capitalize text-white/80 text-sm">
                 fullStack web development
               </span>
             </div>
@@ -83,7 +84,7 @@ export default function Course() {
           </div>
 
           {/*right*/}
-          <div className="bg-white/10 backdrop-blur-md rounded-lg w-full md:max-w-[300px] flex flex-col gap-4 p-6">
+          <div className="bg-white/10 backdrop-blur-md rounded-lg w-full md:max-w-[300px] flex flex-col gap-4 p-6 border border-white/30">
             <p className="text-lg font-medium">${course.price}</p>
             <Button
               size="lg"
