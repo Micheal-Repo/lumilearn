@@ -57,14 +57,14 @@ export default function Course() {
           />
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black" />
 
         {/*content*/}
-        <div className="relative container mx-auto flex flex-col md:flex-row md:items-end md:justify-between justify-end gap-6 text-white padding-sp pb-8 ">
+        <div className="relative container mx-auto flex flex-col md:flex-row md:items-end md:justify-between justify-end gap-6 text-white padding-sp pb-8 h-full">
           {/*left*/}
           
           <div className="flex flex-col gap-6">
-            <div className="flex gap-2 items-center text-white/80 text-sm mb-8 cursor-pointer">
+            <div className="flex gap-2 items-center text-white/80 text-sm mb-6 md:mb-8 cursor-pointer">
               <ArrowLeft />
               <p>Back to Courses</p>
             </div>
