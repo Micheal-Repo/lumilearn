@@ -41,7 +41,7 @@ export default function Sidebar() {
       </aside>
 
       {/*Mobile screen*/}
-      <aside className="h-screen w-[3rem] border-r border-border relative z-20 bg-background md:hidden">
+      <aside className="h-screen w-[3rem]  relative z-20 bg-background md:hidden">
         {isOpen && (
           <div className="absolute w-[100vw] bg-black/30 top-0 left-0 h-screen z-10" />
         )}
@@ -196,7 +196,7 @@ function SidebarContent() {
       {/*modules*/}
       <Accordion
         type="multiple"
-        className="w-full mt-10"
+        className="w-full mt-12"
         value={activeModules}
         onValueChange={setActiveModules}
       >
@@ -204,17 +204,17 @@ function SidebarContent() {
           <AccordionItem key={i} value={`item-${i}`}>
             <AccordionTrigger className={`hover:no-underline py-3 px-3 ${i === 0 ? "border-t" : ""}`}>
               <div className="flex items-center gap-6">
-                <span className="rounded-full bg-muted text-muted-foreground w-10 h-10 flex justify-center items-center font-medium flex-shrink-0">0{i+1}</span>
-                <div className="space-y-1">
+                <span className="rounded-full bg-muted text-muted-foreground w-8 h-8 flex justify-center items-center font-medium flex-shrink-0">0{i+1}</span>
+                <div className="flex flex-col text-left justify-start items-start">
                   <p className="font-bold capitalize">{item.title}</p>
-                  <p className="text-muted-foreground">{item.lessons.length}{""} lessons</p>
+                  <p className="text-sm font-light text-muted-foreground">{item.lessons.length}{""} lessons</p>
                 </div>
               </div>
             </AccordionTrigger>
             <AccordionContent>
               <div className="flex flex-col bg-muted/40">
                 {item.lessons.map((lesson,i)=>(
-                 <div key={i} className={`w-full py-3 pl-8 pr-3 hover:bg-muted flex border-l items-center transition-all duration-300 gap-4 ${i === 0 ? "border-green-500 bg-muted" : ""}`}>
+                 <div key={i} className={`w-full py-3 pl-8 pr-3 hover:bg-muted flex border-l-2 items-center transition-all duration-300 gap-4 ${i === 0 ? "border-green-500 bg-muted" : "border-transparent"}`}>
                     <span className="text-muted-foreground">0{i+1}</span>
                     <PlayCircle className="text-muted-foreground ml-2"/>
                     <p className="capitalize">{lesson.title}</p>
