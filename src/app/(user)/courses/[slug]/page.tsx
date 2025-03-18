@@ -47,7 +47,7 @@ export default function Course() {
   return (
     <div className="w-screen pb-14">
       {/*Top*/}
-      <div className="min-h-[50vh] w-full relative pt-[3rem]">
+      <div className="min-h-[50vh] w-full relative pt-[3rem] flex items-end">
         <div className="absolute inset-0">
           <Image
             src="/image.jpeg"
@@ -60,7 +60,7 @@ export default function Course() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black" />
 
         {/*content*/}
-        <div className="relative container mx-auto flex flex-col md:flex-row md:items-end md:justify-between justify-end gap-6 text-white padding-sp pb-8 h-full">
+        <div className="relative container mx-auto flex flex-col md:flex-row md:justify-between gap-6 text-white padding-sp pb-8">
           {/*left*/}
           
           <div className="flex flex-col gap-6">
