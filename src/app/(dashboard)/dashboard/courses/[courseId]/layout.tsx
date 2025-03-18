@@ -20,9 +20,9 @@ export default function UserLayout({
         enableSystem
         disableTransitionOnChange
       >
-        <div className="w-screen h-screen flex justify-between">
+        <div className="w-screen h-[100dvh] flex justify-between">
           <Sidebar />
-          <ScrollArea className="h-screen flex-1 relative">
+          <ScrollArea className="h-[100dvh] flex-1 relative">
            {children}
           </ScrollArea>
         </div>
