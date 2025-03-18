@@ -42,7 +42,7 @@ export default function CourseCard({ course }: props) {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/80" />
 
           <div className="absolute inset-0 py-6 px-4 flex justify-between items-end">
-            <div className="rounded-3xl bg-black/40 backdrop-blur-md p-2 border text-white">
+            <div className="rounded-3xl bg-white/10 backdrop-blur-md p-2 text-white">
               <p className="text-sm capitalize">
                 {course.category || "Uncategorized"}
               </p>
