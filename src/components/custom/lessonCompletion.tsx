@@ -7,7 +7,7 @@ import { CheckCircle, Loader2, XCircle } from "lucide-react";
 export default function LessonCompletion() {
   const isCompleted = false;
   return (
-    <div className="absolute bottom-0 left-0 right-0 border-t border-border z-20">
+    <div className="absolute bottom-0 left-0 right-0 border-t border-border z-20 bg-background">
       <div className="max-w-4xl padding-sp flex flex-col md:flex-row gap-4 items-center md:justify-between justify-center py-3 mx-auto">
         {/*left*/}
         <div className="flex flex-col md:text-left text-center">
@@ -26,7 +26,7 @@ export default function LessonCompletion() {
         {/*right*/}
         <Button
           size="lg"
-          className="w-full bg-gradient-to-r from-green-600 to-pink-500 text-white"
+          className="bg-gradient-to-r from-green-600 to-pink-500 text-white"
         >
           {isCompleted ? (
             <>

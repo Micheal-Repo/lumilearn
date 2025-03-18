@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <div className="max-w-4xl mx-auto padding-sp text-4xl pt-[3rem] pb-[4rem]">
         <h2 className="text-3xl font-bold capitalize mb-4">Zero to full stack Hero</h2>
-        <div className="w-full h-[16rem] md:h-[23rem] rounded-lg overflow-hidden mb-6">
+        <div className="w-full h-[16rem] md:h-[23rem] rounded-lg overflow-hidden mb-6 relative">
            <Image
              src="/image.jpeg"
              alt=""
