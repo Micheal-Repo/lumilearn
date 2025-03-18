@@ -86,7 +86,7 @@ export default function Course() {
           {/*right*/}
           <div className="bg-white/10 backdrop-blur-md rounded-lg w-full md:max-w-[300px] flex flex-col gap-4 p-6 ">
             <p className="text-lg font-medium">${course.price}</p>
-            <Link href="/dashboard courses/1234">
+            <Link href="/dashboard/courses/1234">
               <Button
                 size="lg"
                 className="w-full bg-gradient-to-r from-green-600 to-pink-500 text-white"
