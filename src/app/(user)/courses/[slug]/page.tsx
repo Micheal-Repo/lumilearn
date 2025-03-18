@@ -47,7 +47,7 @@ export default function Course() {
   return (
     <div className="w-screen pb-14">
       {/*Top*/}
-      <div className="min-h-[50vh] w-full relative max-md:pt-[3rem]">
+      <div className="min-h-[50vh] w-full relative">
         <div className="absolute inset-0">
           <Image
             src="/image.jpeg"
@@ -60,7 +60,7 @@ export default function Course() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/90" />
 
         {/*content*/}
-        <div className="absolute inset-0 container mx-auto flex flex-col md:flex-row md:items-end md:justify-between justify-end gap-6 text-white padding-sp max-md:pt-[3rem] pb-8">
+        <div className="absolute inset-0 container mx-auto flex flex-col md:flex-row md:items-end md:justify-between justify-end gap-6 text-white padding-sp max-md:mt-[3rem] pb-8 ">
           {/*left*/}
           <div className="flex flex-col gap-6">
             <div className="flex gap-2 items-center text-white/80 text-sm mb-8 cursor-pointer">
@@ -104,14 +104,14 @@ export default function Course() {
             {course.modules.map((item, i) => (
               <div key={i}>
                 <div className="p-4 rounded-t-lg border border-border">
-                  <h3 className="text-muted-foreground font-bold font-medium capitalize">
-                    module-{i + 1} {item.title}
+                  <h3 className="text-muted-foreground font-bold font-medium capitalize mb-4">
+                    module-{i + 1}:{" "}{item.title}
                   </h3>
                 </div>
                 {item.lessons.map((lesson, i) => (
                   <div
                     key={i}
-                    className="divider-y divider-border hover:bg-muted/50 p-4 transition-all duration-300 flex items-center border-l border-r border-border gap-4"
+                    className="border-b  hover:bg-muted/50 p-4 transition-all duration-300 flex items-center border-l border-r border-border gap-4"
                   >
                     <span className="rounded-full bg-primary/10 text-primary w-8 h-8 flex justify-center items-center font-medium flex-shrink-0">
                       {i + 1}
