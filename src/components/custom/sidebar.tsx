@@ -140,6 +140,34 @@ function SidebarContent() {
           },
         ],
       },
+      {
+        title: "full stack app",
+        lessons: [
+          {
+            title: "E-commerce web app",
+          },
+          {
+            title: "E-commerce web app",
+          },
+          {
+            title: "E-commerce web app",
+          },
+        ],
+      },
+      {
+        title: "full stack app",
+        lessons: [
+          {
+            title: "E-commerce web app",
+          },
+          {
+            title: "E-commerce web app",
+          },
+          {
+            title: "E-commerce web app",
+          },
+        ],
+      },
     ],
   };
 
@@ -157,9 +185,9 @@ function SidebarContent() {
       <div>
         <h2 className="text-3xl font-bold mb-4">{course.title}</h2>
         <div>
-          <div className="w-full flex justify-center items-center">
-            <p className="text-sm text-muted-foreground">course progress</p>
-            <p className="text-sm text-muted-foreground">{progress}%</p>
+          <div className="w-full flex justify-between items-center mb-2">
+            <p className="text-muted-foreground capitalize">course progress</p>
+            <p className="text-muted-foreground">{progress}%</p>
           </div>
           <Progress value={progress} className="w-full" />
         </div>
@@ -168,25 +196,25 @@ function SidebarContent() {
       {/*modules*/}
       <Accordion
         type="multiple"
-        className="w-full space-y-4"
+        className="w-full mt-10"
         value={activeModules}
         onValueChange={setActiveModules}
       >
         {course.modules.map((item, i) => (
           <AccordionItem key={i} value={`item-${i}`}>
             <AccordionTrigger className={`hover:no-underline py-3 px-3 ${i === 0 ? "border-t" : ""}`}>
-              <div className="flex items-center gap-4">
-                <span className="text-muted-foreground font-medium">0{i+1}</span>
-                <div className="flex flex-col gap-1">
-                  <p className="font-medium capitalize">{item.title}</p>
-                  <p className="text-xs text-muted-foreground">{item.lessons.length}{""} lessons</p>
+              <div className="flex items-center gap-6">
+                <span className="rounded-full bg-muted text-muted-foreground w-10 h-10 flex justify-center items-center font-medium flex-shrink-0">0{i+1}</span>
+                <div className="space-y-1">
+                  <p className="font-bold capitalize">{item.title}</p>
+                  <p className="text-muted-foreground">{item.lessons.length}{""} lessons</p>
                 </div>
               </div>
             </AccordionTrigger>
             <AccordionContent>
               <div className="flex flex-col bg-muted/40">
                 {item.lessons.map((lesson,i)=>(
-                 <div key={i} className={`w-full py-3 pl-8 pr-3 hover:bg-muted/80 flex items-center gap-4 ${i === 0 ? "border-l-green-500 bg-muted/80" : ""}`}>
+                 <div key={i} className={`w-full py-3 pl-8 pr-3 hover:bg-muted flex border-l items-center transition-all duration-300 gap-4 ${i === 0 ? "border-green-500 bg-muted" : ""}`}>
                     <span className="text-muted-foreground">0{i+1}</span>
                     <PlayCircle className="text-muted-foreground ml-2"/>
                     <p className="capitalize">{lesson.title}</p>
