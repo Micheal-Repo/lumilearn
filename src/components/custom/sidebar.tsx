@@ -103,7 +103,7 @@ export default function Sidebar() {
 
 function SidebarContent() {
   const [progress, setProgress] = useState(50);
-  const [activeModules, setActiveModules] = useState<string[]>([]);
+  const [activeModules, setActiveModules] = useState<string[]>(["item-0"]);
 
   const course = {
     title: "Zero to fullstack Hero",

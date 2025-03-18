@@ -22,12 +22,8 @@ export default function UserLayout({
       >
         <div className="w-screen h-screen flex justify-between">
           <Sidebar />
-          <ScrollArea className="h-screen flex-1">
-            <div className="container mx-auto padding-sp text-4xl font-bold">
-              
-              Welcome 
-               
-            </div>
+          <ScrollArea className="h-screen flex-1 relative">
+           {children}
           </ScrollArea>
         </div>
       </ThemeProvider>

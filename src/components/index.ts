@@ -12,6 +12,7 @@ import {ClerkProviderWithTheme} from "./custom/clerkProviderWithTheme";
 import Hero from "./custom/hero"
 import CourseCard from "./custom/CourseCard"
 import Sidebar from "./custom/sidebar"
+import LessonCompletion from "./custom/lessonCompletion"
 
 
 export {
@@ -28,5 +29,6 @@ export {
   ClerkProviderWithTheme,
   Hero,
   CourseCard,
-  Sidebar
+  Sidebar,
+  LessonCompletion
 };
