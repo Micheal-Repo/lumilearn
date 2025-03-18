@@ -11,6 +11,7 @@ import Header from "./custom/header";
 import {ClerkProviderWithTheme} from "./custom/clerkProviderWithTheme";
 import Hero from "./custom/hero"
 import CourseCard from "./custom/CourseCard"
+import Sidebar from "./custom/sidebar"
 
 
 export {
@@ -26,5 +27,6 @@ export {
   Header,
   ClerkProviderWithTheme,
   Hero,
-  CourseCard
+  CourseCard,
+  Sidebar
 };

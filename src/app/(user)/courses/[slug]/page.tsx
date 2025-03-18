@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowLeft, BookOpen } from "lucide-react";
+import Link from "next/link";
 
 //components
 import { Button } from "@/components";
@@ -48,7 +49,6 @@ export default function Course() {
     <div className="w-screen pb-14">
       {/*Top*/}
       <div className="min-h-[50vh] w-full relative max-md:pt-[3rem] flex items-end">
-        
         <div className="absolute inset-0">
           <Image
             src="/image.jpeg"
@@ -63,7 +63,7 @@ export default function Course() {
         {/*content*/}
         <div className="relative container mx-auto flex flex-col md:flex-row md:justify-between gap-6 text-white padding-sp pb-8 md:items-end">
           {/*left*/}
-          
+
           <div className="flex flex-col gap-6">
             <div className="flex gap-2 items-center text-white/80 text-sm mb-6 md:mb-8 cursor-pointer">
               <ArrowLeft />
@@ -71,7 +71,7 @@ export default function Course() {
             </div>
 
             <div>
-              <span className="rounded-3xl  border border-white/30 p-2 bg-white/10 backdrop-blur-md capitalize text-white/80 text-sm">
+              <span className="rounded-3xl p-2 bg-white/10 backdrop-blur-md capitalize text-white/80 text-sm">
                 fullStack web development
               </span>
             </div>
@@ -84,20 +84,22 @@ export default function Course() {
           </div>
 
           {/*right*/}
-          <div className="bg-white/10 backdrop-blur-md rounded-lg w-full md:max-w-[300px] flex flex-col gap-4 p-6 border border-white/30">
+          <div className="bg-white/10 backdrop-blur-md rounded-lg w-full md:max-w-[300px] flex flex-col gap-4 p-6 ">
             <p className="text-lg font-medium">${course.price}</p>
-            <Button
-              size="lg"
-              className="w-full bg-gradient-to-r from-green-600 to-pink-500 text-white"
-            >
-              Access Course
-            </Button>
+            <Link href="/dashboard courses/1234">
+              <Button
+                size="lg"
+                className="w-full bg-gradient-to-r from-green-600 to-pink-500 text-white"
+              >
+                Access Course
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
 
       {/*bottom*/}
-      <div className="mt-14 container mx-auto padding-sp grid lg:grid-cols-3 grid-cols-1 padding-sp gap-12">
+      <div className="mt-14 container mx-auto padding-sp grid lg:grid-cols-3 grid-cols-1 padding-sp lg:gap-12 gap-8 items-start">
         {/*module*/}
         <div className="w-full lg:col-span-2 mb-8 border border-border bg-card rounded-lg p-4">
           <h2 className="text-2xl font-bold mb-4">Course Content</h2>
@@ -107,7 +109,7 @@ export default function Course() {
               <div key={i}>
                 <div className="p-4 rounded-t-lg border border-border">
                   <h3 className="text-muted-foreground font-bold font-medium capitalize ">
-                    module-{i + 1}:{" "}{item.title}
+                    module-{i + 1}: {item.title}
                   </h3>
                 </div>
                 {item.lessons.map((lesson, i) => (
@@ -132,7 +134,7 @@ export default function Course() {
         </div>
 
         {/*instructor*/}
-        <div className="w-full border rounded-lg p-6 border-border space-y-4">
+        <div className="w-full border rounded-lg p-6 border-border space-y-4 lg:h-[300px]">
           <p className="font-bold">Instructor</p>
 
           <div className="flex items-center gap-2">
