@@ -47,7 +47,7 @@ export default function Course() {
   return (
     <div className="w-screen pb-14">
       {/*Top*/}
-      <div className="min-h-[50vh] w-full relative">
+      <div className="min-h-[50vh] w-full relative pt-[3rem]">
         <div className="absolute inset-0">
           <Image
             src="/image.jpeg"
@@ -60,8 +60,9 @@ export default function Course() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/90" />
 
         {/*content*/}
-        <div className="absolute inset-0 container mx-auto flex flex-col md:flex-row md:items-end md:justify-between justify-end gap-6 text-white padding-sp max-md:mt-[3rem] pb-8 ">
+        <div className="relative container mx-auto flex flex-col md:flex-row md:items-end md:justify-between justify-end gap-6 text-white padding-sp pb-8 ">
           {/*left*/}
+          
           <div className="flex flex-col gap-6">
             <div className="flex gap-2 items-center text-white/80 text-sm mb-8 cursor-pointer">
               <ArrowLeft />
@@ -98,13 +99,13 @@ export default function Course() {
       <div className="mt-14 container mx-auto padding-sp grid lg:grid-cols-3 grid-cols-1 padding-sp">
         {/*module*/}
         <div className="w-full lg:col-span-2 mb-8 border border-border bg-card rounded-lg p-4">
-          <h2 className="text-2xl font-bold">Course Content</h2>
+          <h2 className="text-2xl font-bold mb-4">Course Content</h2>
 
           <div className="space-y-4">
             {course.modules.map((item, i) => (
               <div key={i}>
                 <div className="p-4 rounded-t-lg border border-border">
-                  <h3 className="text-muted-foreground font-bold font-medium capitalize mb-4">
+                  <h3 className="text-muted-foreground font-bold font-medium capitalize ">
                     module-{i + 1}:{" "}{item.title}
                   </h3>
                 </div>
