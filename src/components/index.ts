@@ -13,6 +13,7 @@ import Hero from "./custom/hero"
 import CourseCard from "./custom/CourseCard"
 import Sidebar from "./custom/sidebar"
 import LessonCompletion from "./custom/lessonCompletion"
+import {SearchInputMobile} from "./custom/searchInput"
 
 
 export {
@@ -30,5 +31,6 @@ export {
   Hero,
   CourseCard,
   Sidebar,
-  LessonCompletion
+  LessonCompletion,
+  SearchInputMobile
 };
