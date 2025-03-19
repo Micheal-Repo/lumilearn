@@ -1,5 +1,6 @@
 "use client";
 import Form from "next/form";
+import {useRouter} from "next/navigation"
 
 //components
 import { Input, Button } from "@/components";
@@ -30,6 +31,14 @@ export function SearchInput() {
 
 export function SearchInputMobile() {
   const { isSearch, setIsSearch } = useMobileSearch((state) => state);
+ 
+  const router = useRouter()
+ 
+ function handleClose(){
+   setIsSearch(false)
+   router.back()
+ }
+
 
   return (
     <>
@@ -56,7 +65,7 @@ export function SearchInputMobile() {
           </Form>
 
           <MdClose
-            onClick={() => setIsSearch(false)}
+            onClick={handleClose}
             size={26}
             className="text-muted-foreground hover:text-foreground transition-all duration-300"
           />
