@@ -18,22 +18,22 @@ export default function UserLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProviderWithTheme>
-      <Auth>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <ClerkProviderWithTheme>
+        <Auth>
           <div className="w-screen h-[100dvh] flex justify-between">
             <Sidebar />
             <ScrollArea className="h-[100dvh] flex-1 relative">
               {children}
             </ScrollArea>
           </div>
-        </ThemeProvider>
-      </Auth>
-    </ClerkProviderWithTheme>
+        </Auth>
+      </ClerkProviderWithTheme>
+    </ThemeProvider>
   );
 }
