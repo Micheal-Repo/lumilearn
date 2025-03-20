@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { ThemeProvider, Header,ClerkProviderWithTheme } from "@/components";
-
-
+import { ThemeProvider, Header, ClerkProviderWithTheme } from "@/components";
 
 export const metadata: Metadata = {
   title: "Lumilearn",
@@ -14,16 +12,16 @@ export default function UserLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProviderWithTheme>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <ClerkProviderWithTheme>
         <Header />
         {children}
-      </ThemeProvider>
-    </ClerkProviderWithTheme>
+      </ClerkProviderWithTheme>
+    </ThemeProvider>
   );
 }

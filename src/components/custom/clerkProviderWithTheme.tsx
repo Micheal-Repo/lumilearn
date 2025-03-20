@@ -13,7 +13,6 @@ export function ClerkProviderWithTheme({
   const [isDark,setIsDark] = useState<boolean | null>(null)
   
   useEffect(()=>{
-    alert(theme)
     if(theme === "dark"){
       setIsDark(true)
     }else{
