@@ -4,7 +4,7 @@ import Image from "next/image"
 
 
 
-export default function Home() {
+export default async function Lesson() {
 const user = await currentUser();
 
 console.log(user)
