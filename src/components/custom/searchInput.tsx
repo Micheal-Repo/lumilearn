@@ -36,7 +36,7 @@ export function SearchInputMobile() {
  
  function handleClose(){
    setIsSearch(false)
-   router.back()
+   router.push("/")
  }
 
 

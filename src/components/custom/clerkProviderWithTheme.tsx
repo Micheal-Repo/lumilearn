@@ -1,5 +1,5 @@
 "use client";
-
+import {useEffect} from "react"
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { useTheme } from "next-themes";
@@ -11,6 +11,12 @@ export function ClerkProviderWithTheme({
   children: React.ReactNode;
 }) {
   const { theme } = useTheme();
+  
+  useEffect(()=>{
+    alert(theme)
+    console.log("theme",theme)
+  },[theme])
+
 
   if (theme !== "dark") {
     return (

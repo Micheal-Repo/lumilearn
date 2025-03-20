@@ -1,7 +1,14 @@
+import { currentUser } from "@clerk/nextjs/server";
 import { LessonCompletion } from "@/components";
 import Image from "next/image"
 
+
+
 export default function Home() {
+const user = await currentUser();
+
+console.log(user)
+
   return (
     <>
       <div className="max-w-4xl mx-auto padding-sp pt-[3rem] pb-[4rem]">

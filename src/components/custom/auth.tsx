@@ -8,7 +8,10 @@ export default function Auth({ children }: { children: React.ReactNode }) {
   const { user, isSignedIn } = useUser();
   const [showSignIn, setShowSignIn] = useState(false);
   const router = useRouter();
-
+  
+  
+  console.log('user',user)
+  
   useEffect(() => {
     if (!isSignedIn) {
       setShowSignIn(true);
