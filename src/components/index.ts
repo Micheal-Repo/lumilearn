@@ -14,6 +14,7 @@ import CourseCard from "./custom/CourseCard"
 import Sidebar from "./custom/sidebar"
 import LessonCompletion from "./custom/lessonCompletion"
 import {SearchInputMobile} from "./custom/searchInput"
+import Auth from "./custom/auth"
 
 
 export {
@@ -32,5 +33,6 @@ export {
   CourseCard,
   Sidebar,
   LessonCompletion,
-  SearchInputMobile
+  SearchInputMobile,
+  Auth
 };

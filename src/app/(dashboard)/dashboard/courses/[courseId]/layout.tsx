@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { ThemeProvider, Sidebar, ClerkProviderWithTheme } from "@/components";
+import {
+  ThemeProvider,
+  Sidebar,
+  ClerkProviderWithTheme,
+  Auth,
+} from "@/components";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const metadata: Metadata = {
@@ -14,19 +19,21 @@ export default function UserLayout({
 }>) {
   return (
     <ClerkProviderWithTheme>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <div className="w-screen h-[100dvh] flex justify-between">
-          <Sidebar />
-          <ScrollArea className="h-[100dvh] flex-1 relative">
-           {children}
-          </ScrollArea>
-        </div>
-      </ThemeProvider>
+      <Auth>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="w-screen h-[100dvh] flex justify-between">
+            <Sidebar />
+            <ScrollArea className="h-[100dvh] flex-1 relative">
+              {children}
+            </ScrollArea>
+          </div>
+        </ThemeProvider>
+      </Auth>
     </ClerkProviderWithTheme>
   );
 }

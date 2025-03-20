@@ -12,7 +12,7 @@ export function ClerkProviderWithTheme({
 }) {
   const { theme } = useTheme();
 
-  if (theme === "dark") {
+  if (theme !== "dark") {
     return (
       <ClerkProvider
         appearance={{
