@@ -10,7 +10,7 @@ export function ClerkProviderWithTheme({
   children: React.ReactNode;
 }) {
   const { theme } = useTheme();
-  const [isDark,setIsDark] = useState(null)
+  const [isDark,setIsDark] = useState<boolean | null>(null)
   
   useEffect(()=>{
     alert(theme)
