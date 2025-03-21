@@ -29,18 +29,13 @@ export default function CourseCard({ course, href }: props) {
       <Card className="w-full group hover:-translate-y-2 transition-all duration-300 shadow-md overflow-hidden">
         {/*image*/}
         <div className="h-52 md:h-56 relative w-full overflow-hidden">
-          {course.image ? (
+        
             <Image
-              src={urlFor(course.image).url() || ""}
+              src={course.image || ""}
               alt={course.title || "Course Image"}
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-110"
             />
-          ) : (
-            <div className="h-full w-full flex items-center justify-center bg-muted">
-              <Loader size="lg" />
-            </div>
-          )}
 
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/80" />
 

@@ -327,7 +327,7 @@ export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/course/getCourses.ts
 // Variable: getCoursesQuery
-// Query: *[_type == "course"]{    ...,    "slug":slug.current,    "category": category->{...},    "instructor": instructor->{...}   }
+// Query: *[_type == "course"]{    ...,    "image":image.asset->url,    "slug":slug.current,    "category": category->{...},    "instructor": instructor->{...}   }
 export type GetCoursesQueryResult = Array<{
   _id: string;
   _type: "course";
@@ -338,17 +338,7 @@ export type GetCoursesQueryResult = Array<{
   price?: number;
   slug: string | null;
   description?: string;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
+  image: string | null;
   category: {
     _id: string;
     _type: "category";
@@ -394,6 +384,6 @@ export type GetCoursesQueryResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n   *[_type == \"course\"]{\n    ...,\n    \"slug\":slug.current,\n    \"category\": category->{...},\n    \"instructor\": instructor->{...}\n   }\n  ": GetCoursesQueryResult;
+    "\n   *[_type == \"course\"]{\n    ...,\n    \"image\":image.asset->url,\n    \"slug\":slug.current,\n    \"category\": category->{...},\n    \"instructor\": instructor->{...}\n   }\n  ": GetCoursesQueryResult;
   }
 }

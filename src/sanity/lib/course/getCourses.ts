@@ -7,6 +7,7 @@ export default async function getCourse():Promise<GetCoursesQueryResult>{
   const getCoursesQuery = defineQuery(`
    *[_type == "course"]{
     ...,
+    "image":image.asset->url,
     "slug":slug.current,
     "category": category->{...},
     "instructor": instructor->{...}
