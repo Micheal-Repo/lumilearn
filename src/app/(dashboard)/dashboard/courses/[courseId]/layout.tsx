@@ -6,6 +6,7 @@ import {
   Auth,
 } from "@/components";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { SanityLive } from "@/sanity/lib/live";
 
 export const metadata: Metadata = {
   title: "Lumilearn",
@@ -33,6 +34,7 @@ export default function UserLayout({
             </ScrollArea>
           </div>
         </Auth>
+        <SanityLive />
       </ClerkProviderWithTheme>
     </ThemeProvider>
   );

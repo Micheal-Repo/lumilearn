@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ThemeProvider, Header, ClerkProviderWithTheme } from "@/components";
+import { SanityLive } from "@/sanity/lib/live";
 
 export const metadata: Metadata = {
   title: "Lumilearn",
@@ -21,6 +22,7 @@ export default function UserLayout({
       <ClerkProviderWithTheme>
         <Header />
         {children}
+        <SanityLive />
       </ClerkProviderWithTheme>
     </ThemeProvider>
   );
