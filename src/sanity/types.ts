@@ -466,11 +466,42 @@ export type GetCoursesQueryResult = Array<{
   } | null;
 }>;
 
+// Source: ./src/sanity/lib/student/isEnrolledInCourse.ts
+// Variable: studentQuery
+// Query: *[_type == "student" && clerkId == $clerkId][0]._id
+export type StudentQueryResult = string | null;
+// Variable: enrollmentQuery
+// Query: *[_type == "enrollment" && student._ref == $studentId && course._ref == $courseId][0]
+export type EnrollmentQueryResult = {
+  _id: string;
+  _type: "enrollment";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  student?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "student";
+  };
+  course?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "course";
+  };
+  amount?: number;
+  paymentId?: string;
+  enrolledAt?: string;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"course\" && slug.current == $slug][0]{\n     ...,\n     \"image\":image.asset->url,\n     \"category\": category->{...},\n     \"instructor\": instructor->{...},\n     \"modules\": modules[]->{\n       ...,\n       \"lessons\": lessons[]->{...}\n     },\n    }": GetCourseBySlugQueryResult;
     "\n   *[_type == \"course\"]{\n    ...,\n    \"image\":image.asset->url,\n    \"slug\":slug.current,\n    \"category\": category->{...},\n    \"instructor\": instructor->{...}\n   }\n  ": GetCoursesQueryResult;
+    "*[_type == \"student\" && clerkId == $clerkId][0]._id": StudentQueryResult;
+    "*[_type == \"enrollment\" && student._ref == $studentId && course._ref == $courseId][0]": EnrollmentQueryResult;
   }
 }

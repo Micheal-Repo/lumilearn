@@ -6,27 +6,13 @@ import { useRouter } from "next/navigation";
 
 export default function Auth({ children }: { children: React.ReactNode }) {
   const { user, isSignedIn } = useUser();
-  const [showSignIn, setShowSignIn] = useState(false);
   const router = useRouter();
-  
-  
-  console.log('user',user)
-  
-  useEffect(() => {
-    if (!isSignedIn) {
-      setShowSignIn(true);
-    } else {
-      setShowSignIn(false);
-    }
-  }, [isSignedIn]);
 
-  if (showSignIn) {
-    return (
-      <div className="w-screen h-[100dvh] flex justify-center items-center">
-        <SignIn />
-      </div>
-    );
-  } else {
-    return children;
+  //console.log('user',user)
+
+  if (!isSignedIn) {
+    router.replace("/");
   }
+
+  return children;
 }
