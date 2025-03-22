@@ -325,6 +325,92 @@ export type Slug = {
 
 export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | LessonCompletion | Enrollment | Student | Lesson | Module | Course | Instructor | Category | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./src/sanity/lib/course/getCourseBySlug.ts
+// Variable: getCourseBySlugQuery
+// Query: *[_type == "course" && slug.current == $slug][0]{     ...,     "image":image.asset->url,     "category": category->{...},     "instructor": instructor->{...},     "modules": modules[]->{       ...,       "lessons": lessons[]->{...}     },    }
+export type GetCourseBySlugQueryResult = {
+  _id: string;
+  _type: "course";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  price?: number;
+  slug?: Slug;
+  description?: string;
+  image: string | null;
+  category: {
+    _id: string;
+    _type: "category";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name?: string;
+    slug?: Slug;
+    description?: string;
+    icon?: string;
+    color?: string;
+  } | null;
+  modules: Array<{
+    _id: string;
+    _type: "module";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    lessons: Array<{
+      _id: string;
+      _type: "lesson";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      title?: string;
+      slug?: Slug;
+      description?: string;
+      videoUrl?: string;
+      loomUrl?: string;
+      content?: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
+    }> | null;
+  }> | null;
+  instructor: {
+    _id: string;
+    _type: "instructor";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name?: string;
+    bio?: string;
+    photo?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  } | null;
+} | null;
+
 // Source: ./src/sanity/lib/course/getCourses.ts
 // Variable: getCoursesQuery
 // Query: *[_type == "course"]{    ...,    "image":image.asset->url,    "slug":slug.current,    "category": category->{...},    "instructor": instructor->{...}   }
@@ -384,6 +470,7 @@ export type GetCoursesQueryResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "*[_type == \"course\" && slug.current == $slug][0]{\n     ...,\n     \"image\":image.asset->url,\n     \"category\": category->{...},\n     \"instructor\": instructor->{...},\n     \"modules\": modules[]->{\n       ...,\n       \"lessons\": lessons[]->{...}\n     },\n    }": GetCourseBySlugQueryResult;
     "\n   *[_type == \"course\"]{\n    ...,\n    \"image\":image.asset->url,\n    \"slug\":slug.current,\n    \"category\": category->{...},\n    \"instructor\": instructor->{...}\n   }\n  ": GetCoursesQueryResult;
   }
 }

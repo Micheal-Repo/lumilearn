@@ -15,6 +15,7 @@ import Sidebar from "./custom/sidebar"
 import LessonCompletion from "./custom/lessonCompletion"
 import {SearchInputMobile} from "./custom/searchInput"
 import Auth from "./custom/auth"
+import EnrollButton from "./custom/EnrollButton"
 
 
 export {
@@ -34,5 +35,6 @@ export {
   Sidebar,
   LessonCompletion,
   SearchInputMobile,
-  Auth
+  Auth,
+  EnrollButton
 };
