@@ -31,7 +31,6 @@ export const enrollmentType = defineType({
       name: "paymentId",
       title: "Payment ID",
       type: "string",
-      validation: (rule) => rule.required(),
       description: "The Stripe payment/checkout session ID",
     }),
     defineField({
