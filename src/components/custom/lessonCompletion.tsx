@@ -1,11 +1,47 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components";
 import { CheckCircle, Loader2, XCircle } from "lucide-react";
+import { completeLessonAction, uncompleteLessonAction } from "@/actions";
+import { useRouter } from "next/navigation";
 
+export default function LessonCompletion({
+  lessonId,
+  completionStatus,
+  clerkId
+}: {
+  lessonId: string;
+  completionStatus: boolean;
+  clerkId:string 
+}) {
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isPending, setIsPending] = useState(false);
+  const router = useRouter();
 
-export default function LessonCompletion() {
-  const isCompleted = false;
+  useEffect(() => {
+    setIsCompleted(completionStatus);
+    setIsLoading(false);
+  }, []);
+
+  const handleToggle = async () => {
+    if(!clerkId && !lessonId) return 
+    try {
+      setIsPending(true);
+      if (isCompleted) {
+        await uncompleteLessonAction(lessonId, clerkId);
+      } else {
+        await completeLessonAction(lessonId, clerkId);
+      }
+
+      router.refresh();
+    } catch (error) {
+      console.error("Error toggling lesson completion:", error);
+    } finally {
+      setIsPending(false);
+    }
+  };
+
   return (
     <div className="absolute bottom-0 left-0 right-0 border-t border-border bg-background">
       <div className="max-w-4xl padding-sp flex flex-col md:flex-row gap-4 items-center md:justify-between justify-center py-3 mx-auto">
@@ -25,10 +61,22 @@ export default function LessonCompletion() {
 
         {/*right*/}
         <Button
+          onClick={handleToggle}
+          disabled={isLoading}
           size="lg"
           className="bg-gradient-to-r from-green-600 to-pink-500 text-white"
         >
-          {isCompleted ? (
+          {isLoading ? (
+            <>
+              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+              please wait...
+            </>
+          ) : isPending ? (
+            <>
+              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+              {isCompleted ? "Uncompleting..." : "Completing..."}
+            </>
+          ) : isCompleted ? (
             <>
               <XCircle className="h-4 w-4 mr-2" />
               Mark as Not Complete

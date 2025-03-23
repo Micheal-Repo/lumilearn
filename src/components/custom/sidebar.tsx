@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 //icons
 import {
@@ -30,14 +31,21 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export default function Sidebar() {
+//types
+import { GetCourseByIdQueryResult } from "@/sanity/types";
+
+interface props {
+  course: GetCourseByIdQueryResult;
+}
+
+export default function Sidebar({ course }: props) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       {/*large screen*/}
       <aside className="h-screen w-[22rem] lg:w-[25rem] border-r border-border max-md:hidden bg-background">
-        <SidebarContent />
+        <SidebarContent course={course} />
       </aside>
 
       {/*Mobile screen*/}
@@ -52,7 +60,7 @@ export default function Sidebar() {
             isOpen ? "translate-x-[2.5rem]" : "-translate-x-[110%]"
           )}
         >
-          <SidebarContent />
+          <SidebarContent course={course} />
         </div>
 
         <div className="relative z-30 bg-background flex justify-center py-6 h-screen w-full border-r border-border">
@@ -101,81 +109,47 @@ export default function Sidebar() {
   );
 }
 
-function SidebarContent() {
+function SidebarContent({ course }: { course: GetCourseByIdQueryResult }) {
   const [progress, setProgress] = useState(50);
-  const [activeModules, setActiveModules] = useState<string[]>(["item-0"]);
+  const [activeModules, setActiveModules] = useState<string[]>([]);
 
-  const course = {
-    title: "Zero to fullstack Hero",
-    category: "fullstack development",
-    price: 34.8,
-    desc: "Welcome to Gboard clipboard, any text you copy will be saved here.Tap on a clip to paste it in the text box.",
-    instructor: "Ndukwe David",
-    modules: [
-      {
-        title: "full stack app",
-        lessons: [
-          {
-            title: "E-commerce web app",
-          },
-          {
-            title: "E-commerce web app",
-          },
-          {
-            title: "E-commerce web app",
-          },
-        ],
-      },
-      {
-        title: "full stack app",
-        lessons: [
-          {
-            title: "E-commerce web app",
-          },
-          {
-            title: "E-commerce web app",
-          },
-          {
-            title: "E-commerce web app",
-          },
-        ],
-      },
-      {
-        title: "full stack app",
-        lessons: [
-          {
-            title: "E-commerce web app",
-          },
-          {
-            title: "E-commerce web app",
-          },
-          {
-            title: "E-commerce web app",
-          },
-        ],
-      },
-      {
-        title: "full stack app",
-        lessons: [
-          {
-            title: "E-commerce web app",
-          },
-          {
-            title: "E-commerce web app",
-          },
-          {
-            title: "E-commerce web app",
-          },
-        ],
-      },
-    ],
-  };
+  const params = useParams<{
+    courseId: string;
+    lessonId: string;
+  }>();
+
+  useEffect(() => {
+    function findModuleByLessonId() {
+      if (!course || !course.modules || !params.lessonId) return null;
+
+      for (const module of course.modules) {
+        if (module.lessons) {
+          const foundLesson = module.lessons.find(
+            (lesson) => lesson._id === params.lessonId
+          );
+          if (foundLesson) {
+            return module;
+          }
+        }
+      }
+
+      return null;
+    }
+
+    const module = findModuleByLessonId();
+
+    if (module) {
+      if (!activeModules.includes(module._id)) {
+        setActiveModules([...activeModules, module._id]);
+      }
+    }
+  }, [params]);
 
   return (
     <ScrollArea className="w-full h-screen px-4 sm:px-6 ">
       <div className="w-full flex items-center justify-between py-4 mb-6">
         <span className="flex items-center gap-2">
-          <ArrowLeft size={24} /> 
+          <ArrowLeft size={24} />
           <span>My Courses</span>
         </span>
         <ModeToggle />
@@ -183,7 +157,7 @@ function SidebarContent() {
 
       {/*title and progress*/}
       <div>
-        <h2 className="text-3xl font-bold mb-4">{course.title}</h2>
+        <h2 className="text-3xl font-bold mb-4">{course?.title}</h2>
         <div>
           <div className="w-full flex justify-between items-center mb-2">
             <p className="text-muted-foreground capitalize">course progress</p>
@@ -200,25 +174,41 @@ function SidebarContent() {
         value={activeModules}
         onValueChange={setActiveModules}
       >
-        {course.modules.map((item, i) => (
-          <AccordionItem key={i} value={`item-${i}`}>
-            <AccordionTrigger className={`hover:no-underline py-3 px-3 ${i === 0 ? "border-t" : ""}`}>
+        {course?.modules?.map((module, i) => (
+          <AccordionItem key={module._id} value={module._id}>
+            <AccordionTrigger
+              className={`hover:no-underline py-3 px-3 ${
+                i === 0 ? "border-t" : ""
+              }`}
+            >
               <div className="flex items-center gap-6">
-                <span className="rounded-full bg-muted text-muted-foreground w-8 h-8 flex justify-center items-center font-medium flex-shrink-0">0{i+1}</span>
+                <span className="rounded-full bg-muted text-muted-foreground w-8 h-8 flex justify-center items-center font-medium flex-shrink-0">
+                  0{i + 1}
+                </span>
                 <div className="flex flex-col text-left justify-start items-start">
-                  <p className="font-bold capitalize">{item.title}</p>
-                  <p className="text-sm font-light text-muted-foreground">{item.lessons.length}{""} lessons</p>
+                  <p className="font-bold capitalize">{module.title}</p>
+                  <p className="text-sm font-light text-muted-foreground">
+                    {module?.lessons?.length}
+                    {""} lessons
+                  </p>
                 </div>
               </div>
             </AccordionTrigger>
             <AccordionContent>
               <div className="flex flex-col bg-muted/40">
-                {item.lessons.map((lesson,i)=>(
-                 <div key={i} className={`w-full py-3 pl-8 pr-3 hover:bg-muted flex border-l-2 items-center transition-all duration-300 gap-4 ${i === 0 ? "border-green-500 bg-muted" : "border-transparent"}`}>
-                    <span className="text-muted-foreground">0{i+1}</span>
-                    <PlayCircle className="text-muted-foreground ml-2"/>
-                    <p className="capitalize">{lesson.title}</p>
-                 </div>
+                {module?.lessons?.map((lesson, i) => (
+                  <div
+                    key={lesson._id}
+                    className={`w-full py-3 pl-8 pr-3 hover:bg-muted flex border-l-2 items-center transition-all duration-300 gap-4 ${
+                      params?.lessonId === lesson._id
+                        ? "border-green-500 bg-muted"
+                        : "border-transparent"
+                    }`}
+                  >
+                    <span className="text-muted-foreground">0{i + 1}</span>
+                    <PlayCircle className="text-muted-foreground ml-2" />
+                    <p className="capitalize">{lesson?.title}</p>
+                  </div>
                 ))}
               </div>
             </AccordionContent>

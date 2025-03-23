@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import 'next-cloudinary/dist/cld-video-player.css';
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

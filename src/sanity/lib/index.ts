@@ -9,6 +9,13 @@ import getCourseById from "./course/getCourseById"
 import isEnrolledInCourse from "./student/isEnrolledInCourse"
 import createStudentIfNotExist from "./student/createStudentIfNotExist"
 import createEnrollment from "./student/createEnrollment"
+import getStudentByClerkId from "./student/getStudentByClerkId"
+
+//lesson 
+import getLessonById from "./lesson/getLessonById"
+import getLessonCompletionStatus from "./lesson/getLessonCompletionStatus"
+import completeLessonById from "./lesson/completeLessonById"
+import uncompleteLessonById from "./lesson/uncompleteLessonById"
 
 import {adminClient} from "./adminClient"
 
@@ -23,7 +30,13 @@ export {
   isEnrolledInCourse,
   createStudentIfNotExist,
   createEnrollment,
+  getStudentByClerkId,
   
+  //lesson
+  getLessonById,
+  getLessonCompletionStatus,
+  uncompleteLessonById,
+  completeLessonById,
   
   adminClient
 }

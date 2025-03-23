@@ -552,6 +552,40 @@ export type GetCoursesQueryResult = Array<{
   } | null;
 }>;
 
+// Source: ./src/sanity/lib/lesson/getLessonById.ts
+// Variable: getLessonByIdQuery
+// Query: *[_type == "lesson" && _id == $id][0]
+export type GetLessonByIdQueryResult = {
+  _id: string;
+  _type: "lesson";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  description?: string;
+  videoUrl?: string;
+  loomUrl?: string;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+} | null;
+
 // Source: ./src/sanity/lib/student/createStudentIfNotExist.ts
 // Variable: existingStudentQuery
 // Query: *[_type == "student" && clerkId == $clerkId][0]
@@ -604,6 +638,7 @@ declare module "@sanity/client" {
     "*[_type == \"course\" && _id == $id][0] {\n      ...,\n      \"image\":image.asset->url,\n      \"category\": category->{...}, \n      \"instructor\": instructor->{...},\n      \"modules\": modules[]-> {  \n        ..., \n        \"lessons\": lessons[]-> {...} \n      }\n    }": GetCourseByIdQueryResult;
     "*[_type == \"course\" && slug.current == $slug][0]{\n     ...,\n     \"image\":image.asset->url,\n     \"category\": category->{...},\n     \"instructor\": instructor->{...},\n     \"modules\": modules[]->{\n       ...,\n       \"lessons\": lessons[]->{...}\n     },\n    }": GetCourseBySlugQueryResult;
     "\n   *[_type == \"course\"]{\n    ...,\n    \"image\":image.asset->url,\n    \"slug\":slug.current,\n    \"category\": category->{...},\n    \"instructor\": instructor->{...}\n   }\n  ": GetCoursesQueryResult;
+    "*[_type == \"lesson\" && _id == $id][0]": GetLessonByIdQueryResult;
     "*[_type == \"student\" && clerkId == $clerkId][0]": ExistingStudentQueryResult;
     "*[_type == \"student\" && clerkId == $clerkId][0]._id": StudentQueryResult;
     "*[_type == \"enrollment\" && student._ref == $studentId && course._ref == $courseId][0]": EnrollmentQueryResult;
