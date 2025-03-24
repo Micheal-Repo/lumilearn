@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import {
   ThemeProvider,
-  //Sidebar,
+  Sidebar,
   ClerkProviderWithTheme,
   Auth,
 } from "@/components";
@@ -23,8 +23,8 @@ interface props {
 
 export default async function UserLayout({ children, params }: props) {
   
-  //const { courseId } = await params;
-  const course = true // await getCourseById(courseId);
+  const { courseId } = await params;
+  const course = await getCourseById(courseId);
 
   return (
     <ThemeProvider
@@ -41,7 +41,7 @@ export default async function UserLayout({ children, params }: props) {
             </div>
           ) : (
             <div className="w-screen h-[100dvh] flex justify-between">
-             
+             <Sidebar course={course}/>
               <ScrollArea className="h-[100dvh] flex-1 relative">
                 {children}
               </ScrollArea>

@@ -118,32 +118,32 @@ function SidebarContent({ course }: { course: GetCourseByIdQueryResult }) {
     lessonId: string;
   }>();
 
-  // useEffect(() => {
-  //   function findModuleByLessonId() {
-  //     if (!course || !course.modules || !params.lessonId) return null;
+  useEffect(() => {
+    function findModuleByLessonId() {
+      if (!course || !course.modules || !params.lessonId) return null;
 
-  //     for (const mod of course.modules) {
-  //       if (mod.lessons) {
-  //         const foundLesson = mod.lessons.find(
-  //           (lesson) => lesson._id === params.lessonId
-  //         );
-  //         if (foundLesson) {
-  //           return mod;
-  //         }
-  //       }
-  //     }
+      for (const mod of course.modules) {
+        if (mod.lessons) {
+          const foundLesson = mod.lessons.find(
+            (lesson) => lesson._id === params.lessonId
+          );
+          if (foundLesson) {
+            return mod;
+          }
+        }
+      }
 
-  //     return null;
-  //   }
+      return null;
+    }
 
-  //   const mod = findModuleByLessonId();
+    const mod = findModuleByLessonId();
 
-  //   if (mod) {
-  //     if (!activeModules.includes(mod._id)) {
-  //       setActiveModules([...activeModules, mod._id]);
-  //     }
-  //   }
-  // }, [params]);
+    if (mod) {
+      if (!activeModules.includes(mod._id)) {
+        setActiveModules([...activeModules, mod._id]);
+      }
+    }
+  }, [params]);
 
   return (
     <ScrollArea className="w-full h-screen px-4 sm:px-6 ">
