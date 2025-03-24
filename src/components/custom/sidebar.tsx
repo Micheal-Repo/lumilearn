@@ -122,13 +122,13 @@ function SidebarContent({ course }: { course: GetCourseByIdQueryResult }) {
     function findModuleByLessonId() {
       if (!course || !course.modules || !params.lessonId) return null;
 
-      for (const module of course.modules) {
-        if (module.lessons) {
-          const foundLesson = module.lessons.find(
+      for (const mod of course.modules) {
+        if (mod.lessons) {
+          const foundLesson = mod.lessons.find(
             (lesson) => lesson._id === params.lessonId
           );
           if (foundLesson) {
-            return module;
+            return mod;
           }
         }
       }
@@ -136,11 +136,11 @@ function SidebarContent({ course }: { course: GetCourseByIdQueryResult }) {
       return null;
     }
 
-    const module = findModuleByLessonId();
+    const mod = findModuleByLessonId();
 
-    if (module) {
-      if (!activeModules.includes(module._id)) {
-        setActiveModules([...activeModules, module._id]);
+    if (mod) {
+      if (!activeModules.includes(mod._id)) {
+        setActiveModules([...activeModules, mod._id]);
       }
     }
   }, [params]);
@@ -174,8 +174,8 @@ function SidebarContent({ course }: { course: GetCourseByIdQueryResult }) {
         value={activeModules}
         onValueChange={setActiveModules}
       >
-        {course?.modules?.map((module, i) => (
-          <AccordionItem key={module._id} value={module._id}>
+        {course?.modules?.map((mod, i) => (
+          <AccordionItem key={mod._id} value={mod._id}>
             <AccordionTrigger
               className={`hover:no-underline py-3 px-3 ${
                 i === 0 ? "border-t" : ""
@@ -186,9 +186,9 @@ function SidebarContent({ course }: { course: GetCourseByIdQueryResult }) {
                   0{i + 1}
                 </span>
                 <div className="flex flex-col text-left justify-start items-start">
-                  <p className="font-bold capitalize">{module.title}</p>
+                  <p className="font-bold capitalize">{mod.title}</p>
                   <p className="text-sm font-light text-muted-foreground">
-                    {module?.lessons?.length}
+                    {mod?.lessons?.length}
                     {""} lessons
                   </p>
                 </div>
@@ -196,7 +196,7 @@ function SidebarContent({ course }: { course: GetCourseByIdQueryResult }) {
             </AccordionTrigger>
             <AccordionContent>
               <div className="flex flex-col bg-muted/40">
-                {module?.lessons?.map((lesson, i) => (
+                {mod?.lessons?.map((lesson, i) => (
                   <div
                     key={lesson._id}
                     className={`w-full py-3 pl-8 pr-3 hover:bg-muted flex border-l-2 items-center transition-all duration-300 gap-4 ${

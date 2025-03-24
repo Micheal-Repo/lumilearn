@@ -22,7 +22,7 @@ export default function LessonCompletion({
   useEffect(() => {
     setIsCompleted(completionStatus);
     setIsLoading(false);
-  }, []);
+  }, [completionStatus]);
 
   const handleToggle = async () => {
     if(!clerkId && !lessonId) return 
