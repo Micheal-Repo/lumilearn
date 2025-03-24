@@ -22,7 +22,7 @@ export default async function Lesson({ params }: props) {
 
   return (
     <>
-      <div className="max-w-4xl mx-auto padding-sp pt-[3rem] pb-[4rem]">
+      <div className="max-w-4xl mx-auto padding-sp pt-[3rem] pb-[4rem] w-full">
         <div className="mb-4 text-left">
           <h2 className="text-xl font-bold capitalize">{lesson?.title}</h2>
           <p className="text-muted-foreground">{lesson?.description}</p>

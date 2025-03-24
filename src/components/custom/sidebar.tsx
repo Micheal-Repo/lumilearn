@@ -45,7 +45,7 @@ export default function Sidebar({ course }: props) {
     <>
       {/*large screen*/}
       <aside className="h-screen w-[22rem] lg:w-[25rem] border-r border-border max-md:hidden bg-background">
-        <SidebarContent course={course} />
+        <SidebarContent setIsOpen={setIsOpen} course={course} />
       </aside>
 
       {/*Mobile screen*/}
@@ -60,7 +60,7 @@ export default function Sidebar({ course }: props) {
             isOpen ? "translate-x-[2.5rem]" : "-translate-x-[110%]"
           )}
         >
-          <SidebarContent course={course} />
+          <SidebarContent setIsOpen={setIsOpen} course={course} />
         </div>
 
         <div className="relative z-30 bg-background flex justify-center py-6 h-screen w-full border-r border-border">
@@ -109,7 +109,13 @@ export default function Sidebar({ course }: props) {
   );
 }
 
-function SidebarContent({ course }: { course: GetCourseByIdQueryResult }) {
+function SidebarContent({
+  course,
+  setIsOpen,
+}: {
+  course: GetCourseByIdQueryResult;
+  setIsOpen: (val: boolean) => void;
+}) {
   const [progress, setProgress] = useState(50);
   const [activeModules, setActiveModules] = useState<string[]>([]);
 
@@ -198,6 +204,7 @@ function SidebarContent({ course }: { course: GetCourseByIdQueryResult }) {
               <div className="flex flex-col bg-muted/40">
                 {mod?.lessons?.map((lesson, i) => (
                   <Link
+                    onClick={()=> setIsOpen(false)}
                     href={`/dashboard/courses/${params.courseId}/lesson/${lesson._id}`}
                     key={lesson._id}
                     className={`w-full py-3 pl-8 pr-3 hover:bg-muted flex border-l-2 items-center transition-all duration-300 gap-4 ${
