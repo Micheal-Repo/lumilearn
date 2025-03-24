@@ -14,6 +14,8 @@ export default function LessonCompletion({
   completionStatus: boolean;
   clerkId:string 
 }) {
+  
+  
   const [isCompleted, setIsCompleted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isPending, setIsPending] = useState(false);

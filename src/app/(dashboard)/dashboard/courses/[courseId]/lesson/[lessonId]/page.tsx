@@ -15,6 +15,7 @@ export default async function Lesson({ params }: props) {
   const { lessonId } = await params;
   const lesson = await getLessonById(lessonId);
   const user = await currentUser();
+
   const completionStatus =
     user?.id && lessonId
       ? await getLessonCompletionStatus(lessonId, user.id)
