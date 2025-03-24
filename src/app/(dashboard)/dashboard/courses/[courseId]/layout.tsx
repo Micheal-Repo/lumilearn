@@ -23,8 +23,8 @@ interface props {
 
 export default async function UserLayout({ children, params }: props) {
   
-  const { courseId } = await params;
-  const course = await getCourseById(courseId);
+  //const { courseId } = await params;
+  const course = true // await getCourseById(courseId);
 
   return (
     <ThemeProvider
