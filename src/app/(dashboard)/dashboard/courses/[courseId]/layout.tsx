@@ -34,7 +34,7 @@ export default async function UserLayout({ children, params }: props) {
       disableTransitionOnChange
     >
       <ClerkProviderWithTheme>
-        <Auth>
+      
           {!course ? (
             <div className="w-screen h-screen flex justify-center items-center text-3xl font-bold">
               Course Not Found
@@ -47,7 +47,7 @@ export default async function UserLayout({ children, params }: props) {
               </ScrollArea>
             </div>
           )}
-        </Auth>
+       
         <SanityLive />
       </ClerkProviderWithTheme>
     </ThemeProvider>
