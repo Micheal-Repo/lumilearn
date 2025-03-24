@@ -1,59 +1,66 @@
-import { currentUser } from "@clerk/nextjs/server";
-import { LessonCompletion } from "@/components";
-import Image from "next/image";
-import { CldVideoPlayer } from "next-cloudinary";
-import { getLessonById, getLessonCompletionStatus } from "@/sanity/lib";
-import { PortableText } from "@portabletext/react";
+// import { currentUser } from "@clerk/nextjs/server";
+// import { LessonCompletion } from "@/components";
+// import Image from "next/image";
+// import { CldVideoPlayer } from "next-cloudinary";
+// import { getLessonById, getLessonCompletionStatus } from "@/sanity/lib";
+// import { PortableText } from "@portabletext/react";
 
-interface props {
-  params: Promise<{
-    lessonId: string;
-  }>;
-}
+// interface props {
+//   params: Promise<{
+//     lessonId: string;
+//   }>;
+// }
 
-export default async function Lesson({ params }: props) {
-  const { lessonId } = await params;
-  const lesson = await getLessonById(lessonId);
-  const user = await currentUser();
+// export default async function Lesson({ params }: props) {
+//   const { lessonId } = await params;
+//   const lesson = await getLessonById(lessonId);
+//   const user = await currentUser();
 
-  // const completionStatus =
-  //   user?.id && lessonId
-  //     ? await getLessonCompletionStatus(lessonId, user.id)
-  //     : false;
+//   // const completionStatus =
+//   //   user?.id && lessonId
+//   //     ? await getLessonCompletionStatus(lessonId, user.id)
+//   //     : false;
 
+//   return (
+//     <>
+//       <div className="max-w-4xl mx-auto padding-sp pt-[3rem] pb-[4rem]">
+//         <div className="mb-4 text-left">
+//           <h2 className="text-xl font-bold capitalize">{lesson?.title}</h2>
+//           <p className="text-muted-foreground">{lesson?.description}</p>
+//         </div>
+
+//         {lesson?.videoUrl && (
+//           <CldVideoPlayer
+//             width="1920"
+//             height="1080"
+//             src={lesson.videoUrl}
+//             controls
+//             logo={false}
+//             className="rounded-2xl"
+//           />
+//         )}
+
+//         {lesson?.content && (
+//           <div>
+//             <h2 className="text-xl font-semibold mb-4 mt-6">Lesson Notes</h2>
+//             <div className="prose prose-blue dark:prose-invert max-w-none">
+//               <PortableText value={lesson.content} />
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     {/* <LessonCompletion
+//         lessonId={lessonId}
+//         completionStatus={completionStatus}
+//         clerkId={user!.id}
+//       />*/}
+//     </>
+//   );
+// }
+
+
+export default function Home(){
   return (
-    <>
-      <div className="max-w-4xl mx-auto padding-sp pt-[3rem] pb-[4rem]">
-        <div className="mb-4 text-left">
-          <h2 className="text-xl font-bold capitalize">{lesson?.title}</h2>
-          <p className="text-muted-foreground">{lesson?.description}</p>
-        </div>
-
-        {lesson?.videoUrl && (
-          <CldVideoPlayer
-            width="1920"
-            height="1080"
-            src={lesson.videoUrl}
-            controls
-            logo={false}
-            className="rounded-2xl"
-          />
-        )}
-
-        {lesson?.content && (
-          <div>
-            <h2 className="text-xl font-semibold mb-4 mt-6">Lesson Notes</h2>
-            <div className="prose prose-blue dark:prose-invert max-w-none">
-              <PortableText value={lesson.content} />
-            </div>
-          </div>
-        )}
-      </div>
-     {/* <LessonCompletion
-        lessonId={lessonId}
-        completionStatus={completionStatus}
-        clerkId={user!.id}
-      />*/}
-    </>
-  );
+      <h1>Home</h1>
+    )
 }

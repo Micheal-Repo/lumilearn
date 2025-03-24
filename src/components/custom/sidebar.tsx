@@ -207,7 +207,7 @@ function SidebarContent({ course }: { course: GetCourseByIdQueryResult }) {
                     }`}
                   >
                     <span className="text-muted-foreground">0{i + 1}</span>
-                    <PlayCircle className="text-muted-foreground ml-2" />
+                    <PlayCircle className="text-muted-foreground ml-2 flex-shrink-0" />
                     <p className="capitalize">{lesson?.title}</p>
                   </Link>
                 ))}
