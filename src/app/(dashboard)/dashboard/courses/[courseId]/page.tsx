@@ -12,11 +12,11 @@ export default async function Course({ params }: props) {
 
   const course = await getCourseById(courseId);
 
-  const lessonId = course?.modules?.[0]?.lessons?.[0]?._id;
+ // const lessonId = course?.modules?.[0]?.lessons?.[0]?._id;
 
-  if (lessonId) {
+  //if (true) {
     //return redirect(`/dashboard/courses/${courseId}/lesson/${lessonId}`);
-  }
+//  }
 
   return (
     <div className="h-screen flex items-center justify-center w-screen">
