@@ -15,7 +15,7 @@ export default async function Course({ params }: props) {
   const lessonId = course?.modules?.[0]?.lessons?.[0]?._id;
 
   if (lessonId) {
-    return redirect(`/dashboard/courses/${courseId}/lesson/${lessonId}`);
+    //return redirect(`/dashboard/courses/${courseId}/lesson/${lessonId}`);
   }
 
   return (
