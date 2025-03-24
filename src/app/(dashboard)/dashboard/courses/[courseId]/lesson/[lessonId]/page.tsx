@@ -1,7 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { LessonCompletion } from "@/components";
+import { LessonCompletion, VideoComponent } from "@/components";
 import Image from "next/image";
-import ReactPlayer from "react-player";
 import { getLessonById, getLessonCompletionStatus } from "@/sanity/lib";
 import { PortableText } from "@portabletext/react";
 
@@ -29,14 +28,7 @@ export default async function Lesson({ params }: props) {
           <p className="text-muted-foreground">{lesson?.description}</p>
         </div>
 
-        {lesson?.videoUrl && (
-          <ReactPlayer
-            url={lesson.videoUrl}
-            width="100%" // Makes it responsive
-            height="auto" // Maintains aspect ratio
-            controls
-          />
-        )}
+        {lesson?.videoUrl && <VideoComponent url={lesson.videoUrl} />}
 
         {lesson?.content && (
           <div>

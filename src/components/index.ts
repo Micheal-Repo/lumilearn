@@ -16,6 +16,7 @@ import LessonCompletion from "./custom/lessonCompletion"
 import {SearchInputMobile} from "./custom/searchInput"
 import Auth from "./custom/auth"
 import EnrollButton from "./custom/EnrollButton"
+import VideoComponent from "./custom/videoComponent"
 
 
 export {
@@ -36,5 +37,6 @@ export {
   LessonCompletion,
   SearchInputMobile,
   Auth,
-  EnrollButton
+  EnrollButton,
+  VideoComponent
 };
