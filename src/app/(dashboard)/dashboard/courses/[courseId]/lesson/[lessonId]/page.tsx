@@ -1,7 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { LessonCompletion } from "@/components";
 import Image from "next/image";
-import { CldVideoPlayer } from "next-cloudinary";
+import ReactPlayer from "react-player";
 import { getLessonById, getLessonCompletionStatus } from "@/sanity/lib";
 import { PortableText } from "@portabletext/react";
 
@@ -30,13 +30,11 @@ export default async function Lesson({ params }: props) {
         </div>
 
         {lesson?.videoUrl && (
-          <CldVideoPlayer
-            width="1920"
-            height="1080"
-            src={lesson.videoUrl}
+          <ReactPlayer
+            url={lesson.videoUrl}
+            width="100%" // Makes it responsive
+            height="auto" // Maintains aspect ratio
             controls
-            logo={false}
-            className="rounded-2xl"
           />
         )}
 
@@ -49,7 +47,7 @@ export default async function Lesson({ params }: props) {
           </div>
         )}
       </div>
-     <LessonCompletion
+      <LessonCompletion
         lessonId={lessonId}
         completionStatus={completionStatus}
         clerkId={user!.id}
