@@ -197,7 +197,8 @@ function SidebarContent({ course }: { course: GetCourseByIdQueryResult }) {
             <AccordionContent>
               <div className="flex flex-col bg-muted/40">
                 {mod?.lessons?.map((lesson, i) => (
-                  <div
+                  <Link
+                    href={`/dashboard/courses/${params.courseId}/lesson/${lesson._id}`}
                     key={lesson._id}
                     className={`w-full py-3 pl-8 pr-3 hover:bg-muted flex border-l-2 items-center transition-all duration-300 gap-4 ${
                       params?.lessonId === lesson._id
@@ -208,7 +209,7 @@ function SidebarContent({ course }: { course: GetCourseByIdQueryResult }) {
                     <span className="text-muted-foreground">0{i + 1}</span>
                     <PlayCircle className="text-muted-foreground ml-2" />
                     <p className="capitalize">{lesson?.title}</p>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </AccordionContent>
