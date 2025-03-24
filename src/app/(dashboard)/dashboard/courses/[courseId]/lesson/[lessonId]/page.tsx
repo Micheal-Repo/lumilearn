@@ -16,10 +16,10 @@ export default async function Lesson({ params }: props) {
   const lesson = await getLessonById(lessonId);
   const user = await currentUser();
 
-  const completionStatus =
-    user?.id && lessonId
-      ? await getLessonCompletionStatus(lessonId, user.id)
-      : false;
+  // const completionStatus =
+  //   user?.id && lessonId
+  //     ? await getLessonCompletionStatus(lessonId, user.id)
+  //     : false;
 
   return (
     <>
@@ -49,11 +49,11 @@ export default async function Lesson({ params }: props) {
           </div>
         )}
       </div>
-      <LessonCompletion
+     {/* <LessonCompletion
         lessonId={lessonId}
         completionStatus={completionStatus}
         clerkId={user!.id}
-      />
+      />*/}
     </>
   );
 }
