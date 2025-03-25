@@ -6,8 +6,14 @@ import {
   Auth,
 } from "@/components";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { redirect } from "next/navigation";
 import { SanityLive } from "@/sanity/lib/live";
-import { getCourseById } from "@/sanity/lib";
+import { getCourseById,getCourseProgress } from "@/sanity/lib";
+import { currentUser } from "@clerk/nextjs/server";
+
+
+
+
 
 export const metadata: Metadata = {
   title: "Lumilearn",
@@ -22,9 +28,15 @@ interface props {
 }
 
 export default async function UserLayout({ children, params }: props) {
-  
+  const user = await currentUser();
+  if (!user?.id) {
+    return redirect("/");
+  }
   const { courseId } = await params;
-  const course = await getCourseById(courseId);
+  const [course, progress] = await Promise.all([
+    getCourseById(courseId),
+    getCourseProgress(user.id, courseId),
+  ]);
 
   return (
     <ThemeProvider
@@ -34,20 +46,19 @@ export default async function UserLayout({ children, params }: props) {
       disableTransitionOnChange
     >
       <ClerkProviderWithTheme>
-      
-          {!course ? (
-            <div className="w-screen h-screen flex justify-center items-center text-3xl font-bold">
-              Course Not Found
-            </div>
-          ) : (
-            <div className="w-screen h-[100dvh] flex justify-between">
-             <Sidebar course={course}/>
-              <ScrollArea className="h-[100dvh] flex-1 relative">
-                {children}
-              </ScrollArea>
-            </div>
-          )}
-       
+        {!course ? (
+          <div className="w-screen h-screen flex justify-center items-center text-3xl font-bold">
+            Course Not Found
+          </div>
+        ) : (
+          <div className="w-screen h-[100dvh] flex justify-between">
+            <Sidebar completedLessons={progress.completedLessons} course={course} />
+            <ScrollArea className="h-[100dvh] flex-1 relative">
+              {children}
+            </ScrollArea>
+          </div>
+        )}
+
         <SanityLive />
       </ClerkProviderWithTheme>
     </ThemeProvider>

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { calculateCourseProgress } from "@/lib/courseProgress";
 
 //icons
 import {
@@ -21,7 +22,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Button, ModeToggle } from "@/components";
+import { Button, ModeToggle, CourseProgress } from "@/components";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Progress } from "@/components/ui/progress";
 import {
@@ -32,20 +33,32 @@ import {
 } from "@/components/ui/accordion";
 
 //types
-import { GetCourseByIdQueryResult } from "@/sanity/types";
+import {
+  GetCourseByIdQueryResult,
+  GetCompletionsQueryResult,
+  Module,
+} from "@/sanity/types";
 
-interface props {
+interface SidebarProps {
   course: GetCourseByIdQueryResult;
+  completedLessons?: GetCompletionsQueryResult["completedLessons"];
 }
 
-export default function Sidebar({ course }: props) {
+export default function Sidebar({
+  course,
+  completedLessons = [],
+}: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       {/*large screen*/}
       <aside className="h-screen w-[22rem] lg:w-[25rem] border-r border-border max-md:hidden bg-background">
-        <SidebarContent setIsOpen={setIsOpen} course={course} />
+        <SidebarContent
+          completedLessons={completedLessons}
+          setIsOpen={setIsOpen}
+          course={course}
+        />
       </aside>
 
       {/*Mobile screen*/}
@@ -60,7 +73,11 @@ export default function Sidebar({ course }: props) {
             isOpen ? "translate-x-[2.5rem]" : "-translate-x-[110%]"
           )}
         >
-          <SidebarContent setIsOpen={setIsOpen} course={course} />
+          <SidebarContent
+            completedLessons={completedLessons}
+            setIsOpen={setIsOpen}
+            course={course}
+          />
         </div>
 
         <div className="relative z-30 bg-background flex justify-center py-6 h-screen w-full border-r border-border">
@@ -112,11 +129,12 @@ export default function Sidebar({ course }: props) {
 function SidebarContent({
   course,
   setIsOpen,
+  completedLessons,
 }: {
   course: GetCourseByIdQueryResult;
+  completedLessons: any;
   setIsOpen: (val: boolean) => void;
 }) {
-  const [progress, setProgress] = useState(50);
   const [activeModules, setActiveModules] = useState<string[]>([]);
 
   const params = useParams<{
@@ -151,6 +169,11 @@ function SidebarContent({
     }
   }, [params]);
 
+  const progress = calculateCourseProgress(
+    course?.modules as unknown as Module[],
+    completedLessons
+  );
+
   return (
     <ScrollArea className="w-full h-screen px-4 sm:px-6 ">
       <div className="w-full flex items-center justify-between py-4 mb-6">
@@ -162,15 +185,13 @@ function SidebarContent({
       </div>
 
       {/*title and progress*/}
-      <div>
-        <h2 className="text-3xl font-bold mb-4">{course?.title}</h2>
-        <div>
-          <div className="w-full flex justify-between items-center mb-2">
-            <p className="text-muted-foreground capitalize">course progress</p>
-            <p className="text-muted-foreground">{progress}%</p>
-          </div>
-          <Progress value={progress} className="w-full" />
-        </div>
+      <div className="space-y-4">
+        <h1 className="font-semibold text-2xl">{course?.title}</h1>
+        <CourseProgress
+          progress={progress}
+          variant="success"
+          label="Course Progress"
+        />
       </div>
 
       {/*modules*/}
@@ -204,7 +225,7 @@ function SidebarContent({
               <div className="flex flex-col bg-muted/40">
                 {mod?.lessons?.map((lesson, i) => (
                   <Link
-                    onClick={()=> setIsOpen(false)}
+                    onClick={() => setIsOpen(false)}
                     href={`/dashboard/courses/${params.courseId}/lesson/${lesson._id}`}
                     key={lesson._id}
                     className={`w-full py-3 pl-8 pr-3 hover:bg-muted flex border-l-2 items-center transition-all duration-300 gap-4 ${
